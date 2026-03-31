@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inch² | Branding Studio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* =========================================
+           CSS VARIABLES & RESET
+           ========================================= */
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --accent: #1800ad; /* Derived from the inch² logo */
+            --gray: #f4f4f4;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        /* =========================================
+           NAVIGATION
+           ========================================= */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: var(--black);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .cta-btn {
+            background-color: var(--accent);
+            color: var(--white) !important;
+            padding: 12px 24px;
+            font-weight: 700 !important;
+            border: 2px solid var(--accent);
+        }
+
+        .cta-btn:hover {
+            background-color: transparent;
+            color: var(--accent) !important;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--black);
+        }
+
+        /* =========================================
+           HERO SECTION (Split Screen)
+           ========================================= */
+        .hero {
+            height: 100vh;
+            /* Ultra-modern 50/50 split background */
+            background: linear-gradient(90deg, var(--black) 50%, var(--white) 50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            /* mix-blend-mode creates the inverse color effect over the split background */
+            color: var(--white);
+            mix-blend-mode: difference; 
+            max-width: 1000px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 6vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* =========================================
+           PROCESS SECTION
+           ========================================= */
+        .section-padding {
+            padding: 100px 5%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            text-align: left;
+        }
+
+        .process-step {
+            padding: 30px;
+            background: var(--gray);
+            border-left: 4px solid var(--accent);
+            transition: var(--transition);
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .process-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--accent);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .process-step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        /* =========================================
+           PORTFOLIO GRID
+           ========================================= */
+        #portfolio {
+            background-color: var(--black);
+            color: var(--white);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            background: #222;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        /* =========================================
+           TESTIMONIALS
+           ========================================= */
+        .testimonials {
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quote {
+            font-size: 1.5rem;
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .author {
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--accent);
+            letter-spacing: 1px;
+        }
+
+        /* =========================================
+           CONTACT & FOOTER
+           ========================================= */
+        #contact {
+            background-color: var(--gray);
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .contact-form-container {
+            flex: 1;
+            min-width: 300px;
+            padding: 100px 5%;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 0;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--black);
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            border-bottom-color: var(--accent);
+        }
+
+        .submit-btn {
+            background: var(--black);
+            color: var(--white);
+            padding: 15px 30px;
+            border: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            align-self: flex-start;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent);
+        }
+
+        .footer-socials {
+            flex: 1;
+            min-width: 300px;
+            background: var(--black);
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            gap: 30px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 30px;
+            font-size: 2rem;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        /* =========================================
+           RESPONSIVE DESIGN
+           ========================================= */
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px 0;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero {
+                /* Change split screen to solid black on mobile for readability */
+                background: var(--black);
+            }
+
+            .hero-content {
+                mix-blend-mode: normal;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home" class="logo">inch&sup2;</a>
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-links" id="nav-links">
+            <a href="#home">Home</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#services">Services</a>
+            <a href="#client-login" style="color: #888; font-size: 0.8rem;">Client Login</a>
+            <a href="#contact" class="cta-btn">GET SQUARED AWAY</a>
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h1>Compelled Branding.<br>Exponential Impact.</h1>
+            <p>Graphic Design. Photography. Strategy. I'm your girl.</p>
+        </div>
+    </header>
+
+    <section class="section-padding" id="services">
+        <h2 class="section-title">The Process</h2>
+        <div class="process-grid">
+            <div class="process-step">
+                <span class="process-number">1&sup2;</span>
+                <h3>Identity</h3>
+                <p>Minimalist, impactful logo creation and complete brand kit development.</p>
+            </div>
+            <div class="process-step">
+                <span class="process-number">2&sup2;</span>
+                <h3>Imagery</h3>
+                <p>High-end product photography that communicates quality and precision.</p>
+            </div>
+            <div class="process-step">
+                <span class="process-number">3&sup2;</span>
+                <h3>Strategy</h3>
+                <p>Comprehensive marketing plans designed for scalable business growth.</p>
+            </div>
+            <div class="process-step">
+                <span class="process-number">4&sup2;</span>
+                <h3>Launch</h3>
+                <p>Employee social media training to ensure your brand voice is consistent.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="portfolio">
+        <h2 class="section-title" style="color: var(--white);">Selected Work</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item"><img src="https://picsum.photos/800/800?random=1" alt="Portfolio Image 1"></div>
+            <div class="portfolio-item"><img src="https://picsum.photos/800/800?random=2" alt="Portfolio Image 2"></div>
+            <div class="portfolio-item"><img src="https://picsum.photos/800/800?random=3" alt="Portfolio Image 3"></div>
+            <div class="portfolio-item"><img src="https://picsum.photos/800/800?random=4" alt="Portfolio Image 4"></div>
+            <div class="portfolio-item"><img src="https://picsum.photos/800/800?random=5" alt="Portfolio Image 5"></div>
+            <div class="portfolio-item"><img src="https://picsum.photos/800/800?random=6" alt="Portfolio Image 6"></div>
+        </div>
+    </section>
+
+    <section class="section-padding testimonials">
+        <div class="testimonial-container">
+            <p class="quote">"Working with inch² transformed our entire visual identity. The precision in both the logo design and the product photography is unmatched. She truly got our brand squared away."</p>
+            <p class="author">— Sarah Jenkins, Founder</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-form-container">
+            <h2 class="section-title" style="text-align: left;">Let's Talk</h2>
+            <form class="contact-form" action="https://formspree.io/f/YOUR_ENDPOINT" method="POST">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" rows="4" placeholder="Tell me about your project..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Inquiry</button>
+            </form>
+        </div>
+        
+        <div class="footer-socials">
+            <h2 class="logo" style="color: var(--white);">inch&sup2;</h2>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-behance"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 inch² Branding Studio. All rights reserved.</p>
+        </div>
+    </section>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const links = document.querySelectorAll('.nav-links a');
+
+        // Toggle mobile menu
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when a link is clicked
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+    </script>
+</body>
+</html>
