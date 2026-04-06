@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Shared CSS - Keep this identical to index.html to maintain the brand look */
+        /* Shared CSS */
         :root {
             --black: #111111;
             --white: #FFFFFF;
@@ -24,7 +24,7 @@
         html { scroll-behavior: smooth; font-family: 'Montserrat', sans-serif; background-color: var(--white); color: var(--black); }
         body { overflow-x: hidden; }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
-        h1, h2, h3, .logo, .brand-text { font-family: 'Helvetica', Arial, sans-serif; font-weight: bold; }
+        h1, h2, h3, h4, .logo, .brand-text { font-family: 'Helvetica', Arial, sans-serif; font-weight: bold; }
 
         /* NAVIGATION */
         nav {
@@ -54,16 +54,30 @@
         .section-padding { padding: 100px 5%; }
         .section-title { font-size: 2.5rem; text-transform: uppercase; margin-bottom: 50px; text-align: center; letter-spacing: -1px; }
 
-        /* SERVICES GRID */
+        /* SERVICES GRID (Interactive) */
         #services { background-color: var(--light-gray); }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .service-card { background: var(--white); padding: 40px; border-top: 6px solid var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.04); transition: var(--transition); }
+        
+        .service-card { 
+            background: var(--white); padding: 40px; border-top: 6px solid var(--accent); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04); transition: var(--transition); 
+            cursor: pointer; position: relative;
+        }
         .service-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+        
         .service-card h3 { font-size: 1.4rem; margin-bottom: 15px; color: var(--black); text-transform: uppercase; }
         .service-card p { font-size: 0.95rem; color: var(--text-gray); line-height: 1.6; margin-bottom: 20px; }
         .service-list { list-style: none; }
         .service-list li { font-size: 0.9rem; color: var(--black); margin-bottom: 10px; padding-left: 20px; position: relative; }
         .service-list li::before { content: '■'; color: var(--accent); position: absolute; left: 0; top: 0; font-size: 0.8rem; }
+        
+        .learn-more-prompt {
+            display: inline-block; margin-top: 20px; font-size: 0.85rem; font-weight: bold; 
+            text-transform: uppercase; color: var(--accent); font-family: 'Helvetica', Arial, sans-serif;
+        }
+        .learn-more-prompt i { margin-left: 5px; transition: transform 0.3s; }
+        .service-card:hover .learn-more-prompt i { transform: translateX(5px); }
+        
         .services-cta { text-align: center; margin-top: 60px; }
 
         /* CONTACT & FOOTER */
@@ -80,19 +94,42 @@
         .social-links a:hover { color: var(--accent); transform: translateY(-5px); }
         .copyright { font-size: 0.8rem; color: #888; margin-top: 20px; }
 
-        /* MODAL */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 2000; justify-content: center; align-items: center; }
-        .modal-content { background: var(--white); padding: 50px; text-align: center; max-width: 400px; width: 90%; position: relative; border-top: 5px solid var(--accent); }
-        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--black); }
-        .modal-content input { width: 100%; padding: 10px; margin: 20px 0; border: 1px solid var(--mid-gray); font-family: 'Montserrat', sans-serif; text-align: center; }
-        .modal-content input:focus { outline: none; border-color: var(--accent); }
-        .modal-content button { background: var(--accent); color: var(--white); padding: 12px 24px; border: none; font-weight: bold; font-family: 'Helvetica', Arial, sans-serif; cursor: pointer; width: 100%; text-transform: uppercase; }
+        /* MODALS (Client Login & Service Details) */
+        .modal-overlay { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 2000; 
+            justify-content: center; align-items: center; padding: 20px;
+        }
+        .modal-content { 
+            background: var(--white); padding: 50px; text-align: left; 
+            max-width: 600px; width: 100%; position: relative; border-top: 5px solid var(--accent); 
+            max-height: 90vh; overflow-y: auto;
+        }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2rem; cursor: pointer; color: var(--black); line-height: 1; }
+        
+        /* Modal specific typography */
+        .modal-content h2 { font-size: 2rem; margin-bottom: 10px; text-transform: uppercase; color: var(--black); }
+        .modal-content p.modal-subtitle { font-size: 1rem; color: var(--text-gray); margin-bottom: 30px; }
+        
+        .tier-block { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--mid-gray); }
+        .tier-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .tier-block h4 { font-size: 1.1rem; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
+        .tier-block ul { list-style: none; margin-left: 0; }
+        .tier-block ul li { font-size: 0.95rem; color: var(--black); margin-bottom: 8px; padding-left: 20px; position: relative; font-family: 'Montserrat', sans-serif;}
+        .tier-block ul li::before { content: '→'; color: var(--accent); position: absolute; left: 0; top: 0; font-weight: bold;}
+
+        /* Client login specific */
+        #login-modal .modal-content { text-align: center; max-width: 400px; }
+        #login-modal input { width: 100%; padding: 15px; margin: 20px 0; border: 1px solid var(--mid-gray); font-family: 'Montserrat', sans-serif; text-align: center; }
+        #login-modal input:focus { outline: none; border-color: var(--accent); }
+        #login-modal button { background: var(--accent); color: var(--white); padding: 15px 24px; border: none; font-weight: bold; font-family: 'Helvetica', Arial, sans-serif; cursor: pointer; width: 100%; text-transform: uppercase; }
         #login-error { color: red; font-size: 0.8rem; display: none; margin-bottom: 10px; }
 
         @media (max-width: 900px) {
             .nav-links { display: none; position: absolute; top: 80px; left: 0; width: 100%; background: var(--white); flex-direction: column; padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
             .nav-links.active { display: flex; }
             .hamburger { display: block; }
+            .modal-content { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -118,7 +155,7 @@
     <section class="section-padding" id="services">
         
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card" onclick="openServiceModal('identity')">
                 <h3>Brand Identity Design</h3>
                 <p>Logos, visual systems, and brand guidelines that make businesses impossible to ignore.</p>
                 <ul class="service-list">
@@ -126,9 +163,10 @@
                     <li>Logo suites & colour palettes</li>
                     <li>Comprehensive Brand Guidelines</li>
                 </ul>
+                <span class="learn-more-prompt">View Packages <i class="fas fa-arrow-right"></i></span>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" onclick="openServiceModal('marketing')">
                 <h3>Marketing Collateral</h3>
                 <p>Professional touchpoints designed to convert audiences and maintain consistency.</p>
                 <ul class="service-list">
@@ -136,9 +174,10 @@
                     <li>Packaging & Merchandise</li>
                     <li>Social Media Template Kits</li>
                 </ul>
+                <span class="learn-more-prompt">View Options <i class="fas fa-arrow-right"></i></span>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" onclick="openServiceModal('retainers')">
                 <h3>Studio Retainers</h3>
                 <p>Your dedicated in-house design studio. Priority turnarounds and a personal approach.</p>
                 <ul class="service-list">
@@ -146,9 +185,10 @@
                     <li>Brand Partner Packages</li>
                     <li>Growth Retainers</li>
                 </ul>
+                <span class="learn-more-prompt">View Tiers <i class="fas fa-arrow-right"></i></span>
             </div>
 
-            <div class="service-card">
+            <div class="service-card" onclick="openServiceModal('training')">
                 <h3>Training Programmes</h3>
                 <p>We upskill your employees to own and execute brand standards internally.</p>
                 <ul class="service-list">
@@ -156,9 +196,10 @@
                     <li>Social Media Strategy Bootcamps</li>
                     <li>Digital Marketing Fundamentals</li>
                 </ul>
+                <span class="learn-more-prompt">View Workshops <i class="fas fa-arrow-right"></i></span>
             </div>
             
-            <div class="service-card">
+            <div class="service-card" onclick="openServiceModal('bundles')">
                 <h3>Growth Bundles</h3>
                 <p>Complete transformations for businesses ready to scale their visual impact.</p>
                 <ul class="service-list">
@@ -166,6 +207,7 @@
                     <li>Transform Bundles</li>
                     <li>In-House Academy Training</li>
                 </ul>
+                <span class="learn-more-prompt">View Bundles <i class="fas fa-arrow-right"></i></span>
             </div>
         </div>
 
@@ -197,6 +239,17 @@
         </div>
     </section>
 
+    <div class="modal-overlay" id="service-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeServiceModal()">&times;</span>
+            <h2 id="sm-title">Service Title</h2>
+            <p class="modal-subtitle" id="sm-subtitle">Service Description</p>
+            <div id="sm-content">
+                </div>
+            <a href="#contact" class="cta-btn" style="display: block; text-align: center; margin-top: 30px;" onclick="closeServiceModal()">Inquire About This Service</a>
+        </div>
+    </div>
+
     <div class="modal-overlay" id="login-modal">
         <div class="modal-content">
             <span class="modal-close" id="close-modal">&times;</span>
@@ -209,21 +262,23 @@
     </div>
 
     <script>
+        // Mobile Menu
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
         const links = document.querySelectorAll('.nav-links a');
         hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); hamburger.innerHTML = navLinks.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; });
         links.forEach(link => { link.addEventListener('click', () => { navLinks.classList.remove('active'); hamburger.innerHTML = '<i class="fas fa-bars"></i>'; }); });
 
+        // Client Portal Logic
         const loginTrigger = document.getElementById('client-login-trigger');
         const loginModal = document.getElementById('login-modal');
-        const closeModal = document.getElementById('close-modal');
+        const closeLoginModal = document.getElementById('close-modal');
         const submitBtn = document.getElementById('submit-login');
         const passInput = document.getElementById('client-password');
         const errorMsg = document.getElementById('login-error');
 
         loginTrigger.addEventListener('click', (e) => { e.preventDefault(); loginModal.style.display = 'flex'; });
-        closeModal.addEventListener('click', () => { loginModal.style.display = 'none'; errorMsg.style.display = 'none'; passInput.value = ''; });
+        closeLoginModal.addEventListener('click', () => { loginModal.style.display = 'none'; errorMsg.style.display = 'none'; passInput.value = ''; });
 
         submitBtn.addEventListener('click', () => {
             const enteredPassword = passInput.value;
@@ -236,6 +291,196 @@
             if(clientPortals[enteredPassword]) { window.location.href = clientPortals[enteredPassword]; } 
             else { errorMsg.style.display = 'block'; }
         });
+
+        // ---------------------------------------------------------
+        // DYNAMIC SERVICE MODALS DATA (PULLED FROM PITCH DECK)
+        // ---------------------------------------------------------
+        const serviceData = {
+            'identity': {
+                title: 'Brand Identity Design',
+                subtitle: 'Logos, visual systems, and brand guidelines that make businesses impossible to ignore.',
+                content: `
+                    <div class="tier-block">
+                        <h4>Essential Package</h4>
+                        <ul>
+                            <li>Primary logo with 2 concepts and 3 revision rounds</li>
+                            <li>Final files delivered in high-res PNG, SVG, and PDF formats</li>
+                        </ul>
+                    </div>
+                    <div class="tier-block">
+                        <h4>Full Package</h4>
+                        <ul>
+                            <li>Comprehensive logo suite (primary, secondary, marks)</li>
+                            <li>Custom colour palette & typography system</li>
+                            <li>Extensive Brand Guidelines document</li>
+                            <li>Business card design & professional email signature</li>
+                        </ul>
+                    </div>
+                    <div class="tier-block">
+                        <h4>Professional Package</h4>
+                        <ul>
+                            <li>Primary logo + variations (horizontal, icon-only, monochrome)</li>
+                            <li>3 initial concepts with unlimited revisions</li>
+                            <li>All necessary digital and print file formats included</li>
+                        </ul>
+                    </div>
+                    <div class="tier-block">
+                        <h4>Premium Package</h4>
+                        <ul>
+                            <li>Everything included in the Full Package</li>
+                            <li>9 custom-designed social media templates</li>
+                            <li>Live Brand Presentation & 1-hour handover/strategy session</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'marketing': {
+                title: 'Marketing Collateral',
+                subtitle: 'Professional touchpoints designed to convert audiences and maintain consistency.',
+                content: `
+                    <div class="tier-block">
+                        <h4>Print & Corporate Design</h4>
+                        <ul>
+                            <li>Business Card, Letterhead & Envelope Design</li>
+                            <li>Company Profile Books (up to 12 pages)</li>
+                            <li>High-impact Pitch Deck & Presentation Design (up to 20 slides)</li>
+                            <li>Brochures (bi-fold or tri-fold), Flyers & Posters</li>
+                            <li>Packaging Design (single product) & Signage</li>
+                        </ul>
+                    </div>
+                    <div class="tier-block">
+                        <h4>Social Media Design</h4>
+                        <ul>
+                            <li>Social Media Template Kits (9 reusable templates)</li>
+                            <li>Complete Social Media Profile Setup & Optimization</li>
+                            <li>Monthly Content Design Plans (Options for 16 or 30 posts/month)</li>
+                            <li>A-la-carte Single Post or Story Design</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'retainers': {
+                title: 'Studio Retainers',
+                subtitle: 'Your dedicated in-house design studio. Priority turnarounds and a personal approach.',
+                content: `
+                    <div class="tier-block">
+                        <h4>Starter Retainer</h4>
+                        <ul>
+                            <li>Ideal for businesses needing occasional design packages</li>
+                            <li>Up to 8 custom design assets per month</li>
+                            <li>Guaranteed 48-hour turnaround time</li>
+                            <li>1 revision round per asset</li>
+                            <li>Direct access via WhatsApp and email</li>
+                        </ul>
+                    </div>
+                    <div class="tier-block">
+                        <h4>Growth Retainer</h4>
+                        <ul>
+                            <li>Designed for actively growing, fast-paced brands</li>
+                            <li>Up to 20 custom design assets per month</li>
+                            <li>Priority queue placement & turnaround time</li>
+                            <li>Unlimited design revisions</li>
+                            <li>Dedicated monthly brand review call</li>
+                        </ul>
+                    </div>
+                    <div class="tier-block">
+                        <h4>Brand Partner Retainer</h4>
+                        <ul>
+                            <li>Your fully integrated, dedicated in-house design studio</li>
+                            <li>Unlimited design requests (worked on one active at a time)</li>
+                            <li>Dedicated account management</li>
+                            <li>In-depth monthly strategy session</li>
+                            <li>First access and beta access to all new studio services</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'training': {
+                title: 'Training Programmes',
+                subtitle: 'We upskill your employees to own and execute brand standards internally.',
+                content: `
+                    <div class="tier-block">
+                        <h4>Half-Day Workshops (4 Hours)</h4>
+                        <ul>
+                            <li><strong>Brand Identity Foundations:</strong> Deep dive into brand basics.</li>
+                            <li><strong>Canva for Business:</strong> Design masterclass for non-designers.</li>
+                            <li><strong>Instagram & LinkedIn for Business:</strong> Platform-specific strategies.</li>
+                            <li><strong>Brand Storytelling & Tone of Voice:</strong> Crafting your narrative.</li>
+                        </ul>
+                    </div>
+                    <div class="tier-block">
+                        <h4>Full-Day Workshops (8 Hours)</h4>
+                        <ul>
+                            <li><strong>Brand Consistency for Teams:</strong> Aligning internal brand guardians.</li>
+                            <li><strong>Social Media Strategy & Content Planning:</strong> End-to-end execution.</li>
+                            <li><strong>Digital Marketing Fundamentals:</strong> Building modern marketing ecosystems.</li>
+                            <li><strong>Complete Bootcamp (2 Days):</strong> Extensive brand and marketing overhaul.</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'bundles': {
+                title: 'Growth Bundles',
+                subtitle: 'Complete transformations for businesses ready to scale their visual impact.',
+                content: `
+                    <div class="tier-block">
+                        <h4>Launch Bundle</h4>
+                        <ul>
+                            <li>Complete Logo & Brand Identity System</li>
+                            <li>1 Dedicated Brand Workshop for your team</li>
+                            <li><em>Features combined pricing to maximize ROI.</em></li>
+                        </ul>
+                    </div>
+                    <div class="tier-block">
+                        <h4>Growth Bundle</h4>
+                        <ul>
+                            <li>Full Brand Identity System</li>
+                            <li>Custom Social Media Template Kits</li>
+                            <li>Extensive Social Media Training for internal execution</li>
+                            <li><em>Features combined pricing to maximize ROI.</em></li>
+                        </ul>
+                    </div>
+                    <div class="tier-block">
+                        <h4>Transform Bundle</h4>
+                        <ul>
+                            <li>The complete Premium Brand Identity System</li>
+                            <li>Intensive 2-Day Complete Marketing Bootcamp</li>
+                            <li>3 Months of Starter Retainer Design Services</li>
+                            <li><em>Features combined pricing to maximize ROI.</em></li>
+                        </ul>
+                    </div>
+                `
+            }
+        };
+
+        const servModal = document.getElementById('service-modal');
+        const smTitle = document.getElementById('sm-title');
+        const smSubtitle = document.getElementById('sm-subtitle');
+        const smContent = document.getElementById('sm-content');
+
+        function openServiceModal(serviceKey) {
+            const data = serviceData[serviceKey];
+            if(data) {
+                smTitle.innerText = data.title;
+                smSubtitle.innerText = data.subtitle;
+                smContent.innerHTML = data.content;
+                servModal.style.display = 'flex';
+            }
+        }
+
+        function closeServiceModal() {
+            servModal.style.display = 'none';
+        }
+
+        // Close modals when clicking outside of them
+        window.onclick = function(event) {
+            if (event.target == servModal) { closeServiceModal(); }
+            if (event.target == loginModal) { 
+                loginModal.style.display = 'none'; 
+                errorMsg.style.display = 'none'; 
+                passInput.value = ''; 
+            }
+        }
     </script>
 </body>
 </html>
