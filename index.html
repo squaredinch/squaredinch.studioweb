@@ -28,7 +28,7 @@
 
         html {
             scroll-behavior: smooth;
-            font-family: 'Montserrat', sans-serif; /* Body font */
+            font-family: 'Montserrat', sans-serif; 
             background-color: var(--white);
             color: var(--black);
         }
@@ -102,8 +102,8 @@
         }
 
         .cta-btn:hover {
-            background-color: transparent;
-            color: var(--accent) !important;
+            background-color: var(--black);
+            border-color: var(--black);
         }
 
         .hamburger {
@@ -114,7 +114,7 @@
         }
 
         /* =========================================
-           HERO SECTION (Split Screen)
+           HERO SECTION
            ========================================= */
         .hero {
             height: 100vh;
@@ -186,9 +186,53 @@
             transition: var(--transition);
         }
 
+        /* The new blue hover overlay */
+        .portfolio-item::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(24, 0, 173, 0.4); /* --accent color with opacity */
+            opacity: 0;
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
         .portfolio-item:hover img {
             filter: grayscale(0%);
             transform: scale(1.05);
+        }
+
+        .portfolio-item:hover::after {
+            opacity: 1;
+        }
+
+        /* =========================================
+           TESTIMONIALS (NEW VIBRANT BLUE)
+           ========================================= */
+        .testimonials {
+            background-color: var(--accent); /* Massive pop of blue */
+            color: var(--white);
+            text-align: center;
+        }
+
+        .testimonial-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quote {
+            font-size: 1.8rem;
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .author {
+            font-weight: bold;
+            font-family: 'Helvetica', Arial, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* =========================================
@@ -228,7 +272,8 @@
 
         .form-group input:focus, 
         .form-group textarea:focus {
-            border-bottom-color: var(--accent);
+            border-bottom-color: var(--accent); /* Form inputs glow blue on click */
+            border-bottom-width: 3px;
         }
 
         .submit-btn {
@@ -245,7 +290,7 @@
         }
 
         .submit-btn:hover {
-            background: var(--accent);
+            background: var(--accent); /* Button turns blue on hover */
         }
 
         .footer-socials {
@@ -259,6 +304,7 @@
             align-items: center;
             padding: 50px;
             gap: 30px;
+            border-top: 6px solid var(--accent); /* Blue architectural border */
         }
 
         .social-links {
@@ -277,6 +323,66 @@
             color: #888;
             margin-top: 20px;
             font-family: 'Montserrat', sans-serif;
+        }
+
+        /* =========================================
+           CLIENT PORTAL MODAL CSS
+           ========================================= */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 50px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            border-top: 5px solid var(--accent);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--black);
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+        }
+
+        .modal-content button {
+            background: var(--accent);
+            color: var(--white);
+            padding: 12px 24px;
+            border: none;
+            font-weight: bold;
+            font-family: 'Helvetica', Arial, sans-serif;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        #login-error {
+            color: red;
+            font-size: 0.8rem;
+            display: none;
+            margin-bottom: 10px;
         }
 
         /* =========================================
@@ -323,6 +429,7 @@
         <div class="nav-links" id="nav-links">
             <a href="#home">Home</a>
             <a href="#portfolio">Portfolio</a>
+            <a href="#" id="client-login-trigger" style="color: #888; font-size: 0.8rem;">Client Login</a>
             <a href="#contact" class="cta-btn">GET SQUARED AWAY</a>
         </div>
     </nav>
@@ -347,11 +454,18 @@
         </div>
     </section>
 
+    <section class="section-padding testimonials">
+        <div class="testimonial-container">
+            <p class="quote">"Working with inch² transformed our entire visual identity. The precision in both the logo design and the product photography is unmatched. She truly got our brand squared away."</p>
+            <p class="author">— Sarah Jenkins, Founder</p>
+        </div>
+    </section>
+
     <section id="contact">
         <div class="contact-form-container">
             <h2 class="section-title" style="text-align: left;">Let's Talk</h2>
             
-            <form class="contact-form" action="https://formspree.io/f/mqkraobn" method="POST">
+            <form class="contact-form" action="https://formspree.io/f/xeepvnrq" method="POST">
                 <input type="hidden" name="_replyto" value="ingieelzeny@outlook.com">
                 
                 <div class="form-group">
@@ -378,7 +492,19 @@
         </div>
     </section>
 
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-content">
+            <span class="modal-close" id="close-modal">&times;</span>
+            <h2 style="margin-bottom: 10px;">Client Portal</h2>
+            <p style="font-size: 0.9rem; color: #666; font-family: 'Montserrat', sans-serif;">Enter your project password to access your files.</p>
+            <input type="password" id="client-password" placeholder="Password">
+            <p id="login-error">Incorrect password. Please try again.</p>
+            <button id="submit-login">Access Portal</button>
+        </div>
+    </div>
+
     <script>
+        // Mobile Menu Logic
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
         const links = document.querySelectorAll('.nav-links a');
@@ -395,6 +521,40 @@
                 navLinks.classList.remove('active');
                 hamburger.innerHTML = '<i class="fas fa-bars"></i>';
             });
+        });
+
+        // Client Portal Logic
+        const loginTrigger = document.getElementById('client-login-trigger');
+        const loginModal = document.getElementById('login-modal');
+        const closeModal = document.getElementById('close-modal');
+        const submitBtn = document.getElementById('submit-login');
+        const passInput = document.getElementById('client-password');
+        const errorMsg = document.getElementById('login-error');
+
+        // Open Modal
+        loginTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.style.display = 'flex';
+        });
+
+        // Close Modal
+        closeModal.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+            errorMsg.style.display = 'none';
+            passInput.value = '';
+        });
+
+        // Check Password
+        submitBtn.addEventListener('click', () => {
+            const enteredPassword = passInput.value;
+            
+            // The password is set to "squared"
+            if(enteredPassword === 'squared') {
+                // Change the link below to your Google Drive or Notion portal link!
+                window.location.href = 'https://drive.google.com/'; 
+            } else {
+                errorMsg.style.display = 'block';
+            }
         });
     </script>
 </body>
