@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>inch² | Branding Studio</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -15,7 +15,7 @@
         :root {
             --black: #000000;
             --white: #FFFFFF;
-            --accent: #1800ad; /* Derived from the inch² logo */
+            --accent: #1800ad; /* Vibrant inch² blue */
             --gray: #f4f4f4;
             --transition: all 0.3s ease;
         }
@@ -28,7 +28,7 @@
 
         html {
             scroll-behavior: smooth;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Montserrat', sans-serif; /* Body font */
             background-color: var(--white);
             color: var(--black);
         }
@@ -41,6 +41,14 @@
             text-decoration: none;
             color: inherit;
             transition: var(--transition);
+        }
+
+        /* =========================================
+           TYPOGRAPHY: HELVETICA OVERRIDES
+           ========================================= */
+        h1, h2, h3, .logo, .brand-text {
+            font-family: 'Helvetica', Arial, sans-serif;
+            font-weight: bold;
         }
 
         /* =========================================
@@ -62,8 +70,7 @@
         }
 
         .logo {
-            font-size: 2rem;
-            font-weight: 900;
+            font-size: 2.2rem;
             letter-spacing: -1px;
             color: var(--black);
         }
@@ -79,6 +86,8 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-family: 'Helvetica', Arial, sans-serif;
+            font-weight: bold;
         }
 
         .nav-links a:hover {
@@ -89,7 +98,6 @@
             background-color: var(--accent);
             color: var(--white) !important;
             padding: 12px 24px;
-            font-weight: 700 !important;
             border: 2px solid var(--accent);
         }
 
@@ -110,7 +118,6 @@
            ========================================= */
         .hero {
             height: 100vh;
-            /* Ultra-modern 50/50 split background */
             background: linear-gradient(90deg, var(--black) 50%, var(--white) 50%);
             display: flex;
             justify-content: center;
@@ -120,7 +127,6 @@
         }
 
         .hero-content {
-            /* mix-blend-mode creates the inverse color effect over the split background */
             color: var(--white);
             mix-blend-mode: difference; 
             max-width: 1000px;
@@ -128,7 +134,6 @@
 
         .hero-content h1 {
             font-size: clamp(2.5rem, 6vw, 5.5rem);
-            font-weight: 900;
             line-height: 1.1;
             margin-bottom: 20px;
             text-transform: uppercase;
@@ -138,10 +143,11 @@
             font-size: clamp(1rem, 2vw, 1.5rem);
             font-weight: 300;
             letter-spacing: 2px;
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* =========================================
-           PROCESS SECTION
+           PORTFOLIO GRID
            ========================================= */
         .section-padding {
             padding: 100px 5%;
@@ -149,48 +155,11 @@
 
         .section-title {
             font-size: 2.5rem;
-            font-weight: 900;
             text-transform: uppercase;
             margin-bottom: 50px;
             text-align: center;
         }
 
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 40px;
-            text-align: left;
-        }
-
-        .process-step {
-            padding: 30px;
-            background: var(--gray);
-            border-left: 4px solid var(--accent);
-            transition: var(--transition);
-        }
-
-        .process-step:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .process-number {
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--accent);
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .process-step h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        /* =========================================
-           PORTFOLIO GRID
-           ========================================= */
         #portfolio {
             background-color: var(--black);
             color: var(--white);
@@ -223,33 +192,6 @@
         }
 
         /* =========================================
-           TESTIMONIALS
-           ========================================= */
-        .testimonials {
-            background-color: var(--white);
-            text-align: center;
-        }
-
-        .testimonial-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .quote {
-            font-size: 1.5rem;
-            font-weight: 300;
-            font-style: italic;
-            margin-bottom: 20px;
-        }
-
-        .author {
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--accent);
-            letter-spacing: 1px;
-        }
-
-        /* =========================================
            CONTACT & FOOTER
            ========================================= */
         #contact {
@@ -278,7 +220,7 @@
             background: transparent;
             border: none;
             border-bottom: 2px solid var(--black);
-            font-family: inherit;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
             outline: none;
             transition: var(--transition);
@@ -294,7 +236,8 @@
             color: var(--white);
             padding: 15px 30px;
             border: none;
-            font-weight: 700;
+            font-weight: bold;
+            font-family: 'Helvetica', Arial, sans-serif;
             text-transform: uppercase;
             cursor: pointer;
             transition: var(--transition);
@@ -333,6 +276,7 @@
             font-size: 0.8rem;
             color: #888;
             margin-top: 20px;
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* =========================================
@@ -360,7 +304,6 @@
             }
 
             .hero {
-                /* Change split screen to solid black on mobile for readability */
                 background: var(--black);
             }
 
@@ -380,68 +323,37 @@
         <div class="nav-links" id="nav-links">
             <a href="#home">Home</a>
             <a href="#portfolio">Portfolio</a>
-            <a href="#services">Services</a>
-            <a href="#client-login" style="color: #888; font-size: 0.8rem;">Client Login</a>
             <a href="#contact" class="cta-btn">GET SQUARED AWAY</a>
         </div>
     </nav>
 
     <header class="hero" id="home">
         <div class="hero-content">
-            <h1>Compelled Branding.<br>Exponential Impact.</h1>
+            <h1>Compelled Branding.<br>Exponential Impact&sup2;</h1>
             <p>Graphic Design. Photography. Strategy. I'm your girl.</p>
         </div>
     </header>
 
-    <section class="section-padding" id="services">
-        <h2 class="section-title">The Process</h2>
-        <div class="process-grid">
-            <div class="process-step">
-                <span class="process-number">1&sup2;</span>
-                <h3>Identity</h3>
-                <p>Minimalist, impactful logo creation and complete brand kit development.</p>
-            </div>
-            <div class="process-step">
-                <span class="process-number">2&sup2;</span>
-                <h3>Imagery</h3>
-                <p>High-end product photography that communicates quality and precision.</p>
-            </div>
-            <div class="process-step">
-                <span class="process-number">3&sup2;</span>
-                <h3>Strategy</h3>
-                <p>Comprehensive marketing plans designed for scalable business growth.</p>
-            </div>
-            <div class="process-step">
-                <span class="process-number">4&sup2;</span>
-                <h3>Launch</h3>
-                <p>Employee social media training to ensure your brand voice is consistent.</p>
-            </div>
-        </div>
-    </section>
-
     <section class="section-padding" id="portfolio">
         <h2 class="section-title" style="color: var(--white);">Selected Work</h2>
+        
         <div class="portfolio-grid">
-            <div class="portfolio-item"><img src="https://picsum.photos/800/800?random=1" alt="Portfolio Image 1"></div>
-            <div class="portfolio-item"><img src="https://picsum.photos/800/800?random=2" alt="Portfolio Image 2"></div>
-            <div class="portfolio-item"><img src="https://picsum.photos/800/800?random=3" alt="Portfolio Image 3"></div>
-            <div class="portfolio-item"><img src="https://picsum.photos/800/800?random=4" alt="Portfolio Image 4"></div>
-            <div class="portfolio-item"><img src="https://picsum.photos/800/800?random=5" alt="Portfolio Image 5"></div>
-            <div class="portfolio-item"><img src="https://picsum.photos/800/800?random=6" alt="Portfolio Image 6"></div>
-        </div>
-    </section>
-
-    <section class="section-padding testimonials">
-        <div class="testimonial-container">
-            <p class="quote">"Working with inch² transformed our entire visual identity. The precision in both the logo design and the product photography is unmatched. She truly got our brand squared away."</p>
-            <p class="author">— Sarah Jenkins, Founder</p>
+            <div class="portfolio-item"><img src="ossoul-hardhat.png" alt="OSSOUL Hard Hat Mockup"></div>
+            <div class="portfolio-item"><img src="pros-office.png" alt="Pro's Office Sign Mockup"></div>
+            <div class="portfolio-item"><img src="skills-spot-vest.png" alt="Skills Spot Apparel Mockup"></div>
+            <div class="portfolio-item"><img src="house-of-besma-tote.png" alt="House of Besma Tote Bag Mockup"></div>
+            <div class="portfolio-item"><img src="saaam-notebook.png" alt="Saaam Notebook Mockup"></div>
+            <div class="portfolio-item"><img src="ossoul-plaque.png" alt="OSSOUL Office Plaque Mockup"></div>
         </div>
     </section>
 
     <section id="contact">
         <div class="contact-form-container">
             <h2 class="section-title" style="text-align: left;">Let's Talk</h2>
-            <form class="contact-form" action="https://formspree.io/f/YOUR_ENDPOINT" method="POST">
+            
+            <form class="contact-form" action="https://formspree.io/f/mqkraobn" method="POST">
+                <input type="hidden" name="_replyto" value="ingieelzeny@outlook.com">
+                
                 <div class="form-group">
                     <input type="text" name="name" placeholder="Your Name" required>
                 </div>
@@ -456,7 +368,7 @@
         </div>
         
         <div class="footer-socials">
-            <h2 class="logo" style="color: var(--white);">inch&sup2;</h2>
+            <h2 class="logo brand-text" style="color: var(--white);">inch&sup2;<br><span style="font-size: 1rem; letter-spacing: 0;">BRANDING STUDIO</span></h2>
             <div class="social-links">
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-behance"></i></a>
@@ -471,7 +383,6 @@
         const navLinks = document.getElementById('nav-links');
         const links = document.querySelectorAll('.nav-links a');
 
-        // Toggle mobile menu
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             hamburger.innerHTML = navLinks.classList.contains('active') 
@@ -479,7 +390,6 @@
                 : '<i class="fas fa-bars"></i>';
         });
 
-        // Close mobile menu when a link is clicked
         links.forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
