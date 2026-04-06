@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services & Packages | inch² Branding Studio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Shared CSS - Keep this identical to index.html to maintain the brand look */
+        :root {
+            --black: #111111;
+            --white: #FFFFFF;
+            --accent: #1800ad;
+            --light-gray: #f9f9fb;
+            --mid-gray: #e0e0e0;
+            --text-gray: #555555;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-family: 'Montserrat', sans-serif; background-color: var(--white); color: var(--black); }
+        body { overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        h1, h2, h3, .logo, .brand-text { font-family: 'Helvetica', Arial, sans-serif; font-weight: bold; }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed; top: 0; width: 100%; height: 80px;
+            background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; z-index: 1000; border-bottom: 1px solid var(--mid-gray); box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+        .logo { font-size: 2.2rem; letter-spacing: -1px; color: var(--black); }
+        .nav-links { display: flex; align-items: center; gap: 2rem; }
+        .nav-links a { font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-family: 'Helvetica', Arial, sans-serif; color: var(--text-gray); }
+        .nav-links a:hover { color: var(--accent); }
+        .cta-btn { background-color: var(--accent); color: var(--white) !important; padding: 12px 24px; border: 2px solid var(--accent); font-weight: bold; }
+        .cta-btn:hover { background-color: transparent; color: var(--accent) !important; }
+        .hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: var(--black); }
+
+        /* INTERNAL PAGE HEADER */
+        .page-header {
+            padding: 180px 5% 80px 5%;
+            background-color: var(--black);
+            color: var(--white);
+            text-align: center;
+        }
+        .page-header h1 { font-size: clamp(2rem, 5vw, 4rem); text-transform: uppercase; margin-bottom: 15px; }
+        .page-header p { color: var(--mid-gray); letter-spacing: 1px; }
+
+        .section-padding { padding: 100px 5%; }
+        .section-title { font-size: 2.5rem; text-transform: uppercase; margin-bottom: 50px; text-align: center; letter-spacing: -1px; }
+
+        /* SERVICES GRID */
+        #services { background-color: var(--light-gray); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .service-card { background: var(--white); padding: 40px; border-top: 6px solid var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.04); transition: var(--transition); }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+        .service-card h3 { font-size: 1.4rem; margin-bottom: 15px; color: var(--black); text-transform: uppercase; }
+        .service-card p { font-size: 0.95rem; color: var(--text-gray); line-height: 1.6; margin-bottom: 20px; }
+        .service-list { list-style: none; }
+        .service-list li { font-size: 0.9rem; color: var(--black); margin-bottom: 10px; padding-left: 20px; position: relative; }
+        .service-list li::before { content: '■'; color: var(--accent); position: absolute; left: 0; top: 0; font-size: 0.8rem; }
+        .services-cta { text-align: center; margin-top: 60px; }
+
+        /* CONTACT & FOOTER */
+        #contact { background-color: var(--white); display: flex; flex-wrap: wrap; }
+        .contact-form-container { flex: 1; min-width: 300px; padding: 100px 5%; }
+        .contact-form { max-width: 600px; display: flex; flex-direction: column; gap: 30px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 15px 0; background: transparent; border: none; border-bottom: 2px solid var(--mid-gray); font-family: 'Montserrat', sans-serif; font-size: 1rem; outline: none; transition: var(--transition); }
+        .form-group input:focus, .form-group textarea:focus { border-bottom-color: var(--accent); border-bottom-width: 3px; }
+        .submit-btn { background: var(--black); color: var(--white); padding: 15px 30px; border: none; font-weight: bold; font-family: 'Helvetica', Arial, sans-serif; text-transform: uppercase; cursor: pointer; transition: var(--transition); align-self: flex-start; letter-spacing: 1px; }
+        .submit-btn:hover { background: var(--accent); }
+
+        .footer-socials { flex: 1; min-width: 300px; background: var(--black); color: var(--white); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 50px; gap: 30px; }
+        .social-links { display: flex; gap: 30px; font-size: 2rem; }
+        .social-links a:hover { color: var(--accent); transform: translateY(-5px); }
+        .copyright { font-size: 0.8rem; color: #888; margin-top: 20px; }
+
+        /* MODAL */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: var(--white); padding: 50px; text-align: center; max-width: 400px; width: 90%; position: relative; border-top: 5px solid var(--accent); }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--black); }
+        .modal-content input { width: 100%; padding: 10px; margin: 20px 0; border: 1px solid var(--mid-gray); font-family: 'Montserrat', sans-serif; text-align: center; }
+        .modal-content input:focus { outline: none; border-color: var(--accent); }
+        .modal-content button { background: var(--accent); color: var(--white); padding: 12px 24px; border: none; font-weight: bold; font-family: 'Helvetica', Arial, sans-serif; cursor: pointer; width: 100%; text-transform: uppercase; }
+        #login-error { color: red; font-size: 0.8rem; display: none; margin-bottom: 10px; }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none; position: absolute; top: 80px; left: 0; width: 100%; background: var(--white); flex-direction: column; padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">inch&sup2;</a>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+        <div class="nav-links" id="nav-links">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="index.html#portfolio">Portfolio</a>
+            <a href="#" id="client-login-trigger" style="color: #888; font-size: 0.8rem;">Client Login</a>
+            <a href="#contact" class="cta-btn">GET SQUARED AWAY</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Capabilities</h1>
+        <p>Three revenue streams, one unified studio.</p>
+    </header>
+
+    <section class="section-padding" id="services">
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Brand Identity Design</h3>
+                <p>Logos, visual systems, and brand guidelines that make businesses impossible to ignore.</p>
+                <ul class="service-list">
+                    <li>Essential, Full, & Premium Packages</li>
+                    <li>Logo suites & colour palettes</li>
+                    <li>Comprehensive Brand Guidelines</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h3>Marketing Collateral</h3>
+                <p>Professional touchpoints designed to convert audiences and maintain consistency.</p>
+                <ul class="service-list">
+                    <li>Pitch Deck & Presentation Design</li>
+                    <li>Packaging & Merchandise</li>
+                    <li>Social Media Template Kits</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h3>Studio Retainers</h3>
+                <p>Your dedicated in-house design studio. Priority turnarounds and a personal approach.</p>
+                <ul class="service-list">
+                    <li>Starter Packages</li>
+                    <li>Brand Partner Packages</li>
+                    <li>Growth Retainers</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h3>Training Programmes</h3>
+                <p>We upskill your employees to own and execute brand standards internally.</p>
+                <ul class="service-list">
+                    <li>Brand Consistency Workshops</li>
+                    <li>Social Media Strategy Bootcamps</li>
+                    <li>Digital Marketing Fundamentals</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <h3>Growth Bundles</h3>
+                <p>Complete transformations for businesses ready to scale their visual impact.</p>
+                <ul class="service-list">
+                    <li>Launch Packages</li>
+                    <li>Transform Bundles</li>
+                    <li>In-House Academy Training</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="services-cta">
+            <a href="#contact" class="cta-btn" style="background-color: var(--black); border-color: var(--black);">Request Custom Proposal & Pricing</a>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-form-container">
+            <h2 class="section-title" style="text-align: left;">Ready to scale?</h2>
+            <form class="contact-form" action="https://formspree.io/f/xeepvnrq" method="POST">
+                <input type="hidden" name="_replyto" value="ingieelzeny@outlook.com">
+                <div class="form-group"><input type="text" name="name" placeholder="Your Name" required></div>
+                <div class="form-group"><input type="email" name="email" placeholder="Your Email" required></div>
+                <div class="form-group"><textarea name="message" rows="4" placeholder="Tell me about your project needs..." required></textarea></div>
+                <button type="submit" class="submit-btn">Submit Inquiry</button>
+            </form>
+        </div>
+        
+        <div class="footer-socials">
+            <h2 class="logo brand-text" style="color: var(--white);">inch&sup2;<br><span style="font-size: 1rem; letter-spacing: 0;">BRANDING STUDIO</span></h2>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-behance"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 inch² Branding Studio. All rights reserved.</p>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal-content">
+            <span class="modal-close" id="close-modal">&times;</span>
+            <h2 style="margin-bottom: 10px;">Client Portal</h2>
+            <p style="font-size: 0.9rem; color: #666; font-family: 'Montserrat', sans-serif;">Enter your project password to access your files.</p>
+            <input type="password" id="client-password" placeholder="Password">
+            <p id="login-error">Incorrect password. Please try again.</p>
+            <button id="submit-login">Access Portal</button>
+        </div>
+    </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const links = document.querySelectorAll('.nav-links a');
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); hamburger.innerHTML = navLinks.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; });
+        links.forEach(link => { link.addEventListener('click', () => { navLinks.classList.remove('active'); hamburger.innerHTML = '<i class="fas fa-bars"></i>'; }); });
+
+        const loginTrigger = document.getElementById('client-login-trigger');
+        const loginModal = document.getElementById('login-modal');
+        const closeModal = document.getElementById('close-modal');
+        const submitBtn = document.getElementById('submit-login');
+        const passInput = document.getElementById('client-password');
+        const errorMsg = document.getElementById('login-error');
+
+        loginTrigger.addEventListener('click', (e) => { e.preventDefault(); loginModal.style.display = 'flex'; });
+        closeModal.addEventListener('click', () => { loginModal.style.display = 'none'; errorMsg.style.display = 'none'; passInput.value = ''; });
+
+        submitBtn.addEventListener('click', () => {
+            const enteredPassword = passInput.value;
+            const clientPortals = {
+                "ossoul2026": "https://drive.google.com/link-to-ossoul",
+                "prosagency": "https://drive.google.com/link-to-pros",
+                "besmastyle": "https://drive.google.com/link-to-besma",
+                "squared": "https://drive.google.com/link-to-general"
+            };
+            if(clientPortals[enteredPassword]) { window.location.href = clientPortals[enteredPassword]; } 
+            else { errorMsg.style.display = 'block'; }
+        });
+    </script>
+</body>
+</html>
