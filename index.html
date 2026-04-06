@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>inch² | Branding Studio</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -13,18 +13,16 @@
            CSS VARIABLES & RESET
            ========================================= */
         :root {
-            --black: #000000;
+            --black: #111111;
             --white: #FFFFFF;
-            --accent: #1800ad; /* Vibrant inch² blue */
-            --gray: #f4f4f4;
+            --accent: #1800ad;
+            --light-gray: #f9f9fb;
+            --mid-gray: #e0e0e0;
+            --text-gray: #555555;
             --transition: all 0.3s ease;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html {
             scroll-behavior: smooth;
@@ -32,20 +30,9 @@
             background-color: var(--white);
             color: var(--black);
         }
+        body { overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
 
-        body {
-            overflow-x: hidden;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition);
-        }
-
-        /* =========================================
-           TYPOGRAPHY: HELVETICA OVERRIDES
-           ========================================= */
         h1, h2, h3, .logo, .brand-text {
             font-family: 'Helvetica', Arial, sans-serif;
             font-weight: bold;
@@ -56,62 +43,31 @@
            ========================================= */
         nav {
             position: fixed;
-            top: 0;
-            width: 100%;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.95);
+            top: 0; width: 100%; height: 80px;
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5%;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; z-index: 1000;
+            border-bottom: 1px solid var(--mid-gray);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
         }
 
-        .logo {
-            font-size: 2.2rem;
-            letter-spacing: -1px;
-            color: var(--black);
-        }
+        .logo { font-size: 2.2rem; letter-spacing: -1px; color: var(--black); }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
+        .nav-links { display: flex; align-items: center; gap: 2rem; }
         .nav-links a {
-            font-weight: 500;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Helvetica', Arial, sans-serif;
-            font-weight: bold;
+            font-weight: 500; font-size: 0.9rem; text-transform: uppercase;
+            letter-spacing: 1px; font-family: 'Helvetica', Arial, sans-serif; color: var(--text-gray);
         }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
+        .nav-links a:hover { color: var(--accent); }
 
         .cta-btn {
-            background-color: var(--accent);
-            color: var(--white) !important;
-            padding: 12px 24px;
-            border: 2px solid var(--accent);
+            background-color: var(--accent); color: var(--white) !important;
+            padding: 12px 24px; border: 2px solid var(--accent); font-weight: bold;
         }
+        .cta-btn:hover { background-color: transparent; color: var(--accent) !important; }
 
-        .cta-btn:hover {
-            background-color: var(--black);
-            border-color: var(--black);
-        }
-
-        .hamburger {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--black);
-        }
+        .hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: var(--black); }
 
         /* =========================================
            HERO SECTION
@@ -119,315 +75,87 @@
         .hero {
             height: 100vh;
             background: linear-gradient(90deg, var(--black) 50%, var(--white) 50%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
+            display: flex; justify-content: center; align-items: center;
+            text-align: center; padding: 0 20px;
         }
+        .hero-content { color: var(--white); mix-blend-mode: difference; max-width: 1000px; }
+        .hero-content h1 { font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; }
+        .hero-content p { font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 400; letter-spacing: 2px; text-transform: uppercase; }
 
-        .hero-content {
-            color: var(--white);
-            mix-blend-mode: difference; 
-            max-width: 1000px;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 6vw, 5.5rem);
-            line-height: 1.1;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .hero-content p {
-            font-size: clamp(1rem, 2vw, 1.5rem);
-            font-weight: 300;
-            letter-spacing: 2px;
-            font-family: 'Montserrat', sans-serif;
-        }
+        .section-padding { padding: 100px 5%; }
+        .section-title { font-size: 2.5rem; text-transform: uppercase; margin-bottom: 50px; text-align: center; letter-spacing: -1px; }
 
         /* =========================================
            PORTFOLIO GRID
            ========================================= */
-        .section-padding {
-            padding: 100px 5%;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            margin-bottom: 50px;
-            text-align: center;
-        }
-
-        #portfolio {
-            background-color: var(--black);
-            color: var(--white);
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            aspect-ratio: 1 / 1;
-            background: #222;
-        }
-
-        .portfolio-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%);
-            transition: var(--transition);
-        }
-
-        /* The new blue hover overlay */
-        .portfolio-item::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(24, 0, 173, 0.4); /* --accent color with opacity */
-            opacity: 0;
-            transition: var(--transition);
-            pointer-events: none;
-        }
-
-        .portfolio-item:hover img {
-            filter: grayscale(0%);
-            transform: scale(1.05);
-        }
-
-        .portfolio-item:hover::after {
-            opacity: 1;
-        }
+        #portfolio { background-color: var(--white); }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .portfolio-item { position: relative; overflow: hidden; aspect-ratio: 1 / 1; background: var(--light-gray); }
+        .portfolio-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: transform 0.5s ease, filter 0.5s ease; }
+        .portfolio-item:hover img { filter: grayscale(0%); transform: scale(1.03); }
 
         /* =========================================
-           TESTIMONIALS (NEW VIBRANT BLUE)
+           TESTIMONIALS
            ========================================= */
-        .testimonials {
-            background-color: var(--accent); /* Massive pop of blue */
-            color: var(--white);
-            text-align: center;
-        }
-
-        .testimonial-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .quote {
-            font-size: 1.8rem;
-            font-weight: 300;
-            font-style: italic;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-
-        .author {
-            font-weight: bold;
-            font-family: 'Helvetica', Arial, sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .testimonials { background-color: var(--accent); color: var(--white); text-align: center; }
+        .testimonial-container { max-width: 800px; margin: 0 auto; }
+        .quote { font-size: 1.8rem; font-weight: 300; font-style: italic; margin-bottom: 20px; line-height: 1.4; }
+        .author { font-weight: bold; font-family: 'Helvetica', Arial, sans-serif; text-transform: uppercase; letter-spacing: 1px; }
 
         /* =========================================
            CONTACT & FOOTER
            ========================================= */
-        #contact {
-            background-color: var(--gray);
-            display: flex;
-            flex-wrap: wrap;
+        #contact { background-color: var(--light-gray); display: flex; flex-wrap: wrap; }
+        .contact-form-container { flex: 1; min-width: 300px; padding: 100px 5%; }
+        .contact-form { max-width: 600px; display: flex; flex-direction: column; gap: 30px; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 15px 0; background: transparent; border: none;
+            border-bottom: 2px solid var(--mid-gray); font-family: 'Montserrat', sans-serif; font-size: 1rem; outline: none; transition: var(--transition);
         }
-
-        .contact-form-container {
-            flex: 1;
-            min-width: 300px;
-            padding: 100px 5%;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .form-group input, 
-        .form-group textarea {
-            width: 100%;
-            padding: 15px 0;
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid var(--black);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            outline: none;
-            transition: var(--transition);
-        }
-
-        .form-group input:focus, 
-        .form-group textarea:focus {
-            border-bottom-color: var(--accent); /* Form inputs glow blue on click */
-            border-bottom-width: 3px;
-        }
-
+        .form-group input:focus, .form-group textarea:focus { border-bottom-color: var(--accent); border-bottom-width: 3px; }
+        
         .submit-btn {
-            background: var(--black);
-            color: var(--white);
-            padding: 15px 30px;
-            border: none;
-            font-weight: bold;
-            font-family: 'Helvetica', Arial, sans-serif;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition);
-            align-self: flex-start;
+            background: var(--black); color: var(--white); padding: 15px 30px; border: none;
+            font-weight: bold; font-family: 'Helvetica', Arial, sans-serif; text-transform: uppercase; cursor: pointer; transition: var(--transition); align-self: flex-start; letter-spacing: 1px;
         }
-
-        .submit-btn:hover {
-            background: var(--accent); /* Button turns blue on hover */
-        }
+        .submit-btn:hover { background: var(--accent); }
 
         .footer-socials {
-            flex: 1;
-            min-width: 300px;
-            background: var(--black);
-            color: var(--white);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 50px;
-            gap: 30px;
-            border-top: 6px solid var(--accent); /* Blue architectural border */
+            flex: 1; min-width: 300px; background: var(--black); color: var(--white);
+            display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 50px; gap: 30px;
         }
-
-        .social-links {
-            display: flex;
-            gap: 30px;
-            font-size: 2rem;
-        }
-
-        .social-links a:hover {
-            color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            font-size: 0.8rem;
-            color: #888;
-            margin-top: 20px;
-            font-family: 'Montserrat', sans-serif;
-        }
+        .social-links { display: flex; gap: 30px; font-size: 2rem; }
+        .social-links a:hover { color: var(--accent); transform: translateY(-5px); }
+        .copyright { font-size: 0.8rem; color: #888; margin-top: 20px; }
 
         /* =========================================
-           CLIENT PORTAL MODAL CSS
+           CLIENT PORTAL MODAL
            ========================================= */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: var(--white); padding: 50px; text-align: center; max-width: 400px; width: 90%; position: relative; border-top: 5px solid var(--accent); }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--black); }
+        .modal-content input { width: 100%; padding: 10px; margin: 20px 0; border: 1px solid var(--mid-gray); font-family: 'Montserrat', sans-serif; text-align: center; }
+        .modal-content input:focus { outline: none; border-color: var(--accent); }
+        .modal-content button { background: var(--accent); color: var(--white); padding: 12px 24px; border: none; font-weight: bold; font-family: 'Helvetica', Arial, sans-serif; cursor: pointer; width: 100%; text-transform: uppercase; }
+        #login-error { color: red; font-size: 0.8rem; display: none; margin-bottom: 10px; }
 
-        .modal-content {
-            background: var(--white);
-            padding: 50px;
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            position: relative;
-            border-top: 5px solid var(--accent);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px; right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--black);
-        }
-
-        .modal-content input {
-            width: 100%;
-            padding: 10px;
-            margin: 20px 0;
-            border: 1px solid #ccc;
-            font-family: 'Montserrat', sans-serif;
-            text-align: center;
-        }
-
-        .modal-content button {
-            background: var(--accent);
-            color: var(--white);
-            padding: 12px 24px;
-            border: none;
-            font-weight: bold;
-            font-family: 'Helvetica', Arial, sans-serif;
-            cursor: pointer;
-            width: 100%;
-            text-transform: uppercase;
-        }
-
-        #login-error {
-            color: red;
-            font-size: 0.8rem;
-            display: none;
-            margin-bottom: 10px;
-        }
-
-        /* =========================================
-           RESPONSIVE DESIGN
-           ========================================= */
         @media (max-width: 900px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                flex-direction: column;
-                padding: 20px 0;
-                border-bottom: 1px solid rgba(0,0,0,0.1);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .hero {
-                background: var(--black);
-            }
-
-            .hero-content {
-                mix-blend-mode: normal;
-            }
+            .nav-links { display: none; position: absolute; top: 80px; left: 0; width: 100%; background: var(--white); flex-direction: column; padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .hero { background: var(--black); }
+            .hero-content { mix-blend-mode: normal; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#home" class="logo">inch&sup2;</a>
-        <div class="hamburger" id="hamburger">
-            <i class="fas fa-bars"></i>
-        </div>
+        <a href="index.html" class="logo">inch&sup2;</a>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
         <div class="nav-links" id="nav-links">
-            <a href="#home">Home</a>
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
             <a href="#portfolio">Portfolio</a>
             <a href="#" id="client-login-trigger" style="color: #888; font-size: 0.8rem;">Client Login</a>
             <a href="#contact" class="cta-btn">GET SQUARED AWAY</a>
@@ -436,46 +164,38 @@
 
     <header class="hero" id="home">
         <div class="hero-content">
-            <h1>Compelled Branding.<br>Exponential Impact&sup2;</h1>
-            <p>Graphic Design. Photography. Strategy. I'm your girl.</p>
+            <h1>Compelling Branding.<br>Exponential impact.</h1>
+            <p>Brand Identity. Marketing. Strategy.</p>
         </div>
     </header>
 
     <section class="section-padding" id="portfolio">
-        <h2 class="section-title" style="color: var(--white);">Selected Work</h2>
-        
+        <h2 class="section-title">Selected Work</h2>
         <div class="portfolio-grid">
             <div class="portfolio-item"><img src="ossoul-hardhat.png" alt="OSSOUL Hard Hat Mockup"></div>
             <div class="portfolio-item"><img src="pros-office.png" alt="Pro's Office Sign Mockup"></div>
             <div class="portfolio-item"><img src="skills-spot-vest.png" alt="Skills Spot Apparel Mockup"></div>
             <div class="portfolio-item"><img src="house-of-besma-tote.png" alt="House of Besma Tote Bag Mockup"></div>
             <div class="portfolio-item"><img src="saaam-notebook.png" alt="Saaam Notebook Mockup"></div>
+            <div class="portfolio-item"><img src="ossoul-plaque.png" alt="OSSOUL Office Plaque Mockup"></div>
         </div>
     </section>
 
     <section class="section-padding testimonials">
         <div class="testimonial-container">
             <p class="quote">"Working with inch² transformed our entire visual identity. The precision in both the logo design and the product photography is unmatched. She truly got our brand squared away."</p>
-            <p class="author">— Sarah Jenkins, Founder</p>
+            <p class="author">— Mohamed Saber</p>
         </div>
     </section>
 
     <section id="contact">
         <div class="contact-form-container">
             <h2 class="section-title" style="text-align: left;">Let's Talk</h2>
-            
             <form class="contact-form" action="https://formspree.io/f/xeepvnrq" method="POST">
                 <input type="hidden" name="_replyto" value="ingieelzeny@outlook.com">
-                
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <textarea name="message" rows="4" placeholder="Tell me about your project..." required></textarea>
-                </div>
+                <div class="form-group"><input type="text" name="name" placeholder="Your Name" required></div>
+                <div class="form-group"><input type="email" name="email" placeholder="Your Email" required></div>
+                <div class="form-group"><textarea name="message" rows="4" placeholder="Tell me about your project..." required></textarea></div>
                 <button type="submit" class="submit-btn">Submit Inquiry</button>
             </form>
         </div>
@@ -503,26 +223,12 @@
     </div>
 
     <script>
-        // Mobile Menu Logic
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
         const links = document.querySelectorAll('.nav-links a');
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); hamburger.innerHTML = navLinks.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; });
+        links.forEach(link => { link.addEventListener('click', () => { navLinks.classList.remove('active'); hamburger.innerHTML = '<i class="fas fa-bars"></i>'; }); });
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-
-        // Client Portal Logic
         const loginTrigger = document.getElementById('client-login-trigger');
         const loginModal = document.getElementById('login-modal');
         const closeModal = document.getElementById('close-modal');
@@ -530,30 +236,19 @@
         const passInput = document.getElementById('client-password');
         const errorMsg = document.getElementById('login-error');
 
-        // Open Modal
-        loginTrigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            loginModal.style.display = 'flex';
-        });
+        loginTrigger.addEventListener('click', (e) => { e.preventDefault(); loginModal.style.display = 'flex'; });
+        closeModal.addEventListener('click', () => { loginModal.style.display = 'none'; errorMsg.style.display = 'none'; passInput.value = ''; });
 
-        // Close Modal
-        closeModal.addEventListener('click', () => {
-            loginModal.style.display = 'none';
-            errorMsg.style.display = 'none';
-            passInput.value = '';
-        });
-
-        // Check Password
         submitBtn.addEventListener('click', () => {
             const enteredPassword = passInput.value;
-            
-            // The password is set to "squared"
-            if(enteredPassword === 'squared') {
-                // Change the link below to your Google Drive or Notion portal link!
-                window.location.href = 'https://drive.google.com/'; 
-            } else {
-                errorMsg.style.display = 'block';
-            }
+            const clientPortals = {
+                "ossoul2026": "https://drive.google.com/link-to-ossoul",
+                "prosagency": "https://drive.google.com/link-to-pros",
+                "besmastyle": "https://drive.google.com/link-to-besma",
+                "squared": "https://drive.google.com/link-to-general"
+            };
+            if(clientPortals[enteredPassword]) { window.location.href = clientPortals[enteredPassword]; } 
+            else { errorMsg.style.display = 'block'; }
         });
     </script>
 </body>
